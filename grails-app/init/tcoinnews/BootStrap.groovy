@@ -1,5 +1,6 @@
 package tcoinnews
 
+import com.tcoinnews.Category
 import com.tcoinnews.Role
 import com.tcoinnews.User
 import com.tcoinnews.UserRole
@@ -26,6 +27,26 @@ class BootStrap {
             } else{
                 println("--- init User")
                 UserRole.create(giap, roleAdmin, true)
+            }
+        }
+
+        if(!Category.count()){
+            Category thoisu = new Category(name: "Thời sự")
+            Category tintuc = new Category(name: "Tin Tức")
+            Category congnghe = new Category(name: "Công Nghệ")
+            Category bitcoin = new Category(name: "Bitcoin")
+            Category giabitcoin = new Category(name: "Giá Bitcoin")
+            Category maytinh = new Category(name: "Máy tính")
+
+            thoisu.save(flush: true)
+            tintuc.save(flush: true)
+            if(congnghe.save(flush: true)){
+                maytinh.parent = congnghe
+                maytinh.save(flush: true)
+            }
+            if(bitcoin.save(flush: true)){
+                giabitcoin.parent = bitcoin
+                giabitcoin.save(flush: true)
             }
         }
     }
