@@ -8,12 +8,8 @@
 
     <title><g:layoutTitle default="Tcoin News"/></title>
 
-    <asset:stylesheet src="bootstrap.min.css"/>
-    <asset:stylesheet src="css/font-awesome.min.css"/>
-
-    <asset:stylesheet src="animate.css"/>
-    <asset:stylesheet src="style.css"/>
-    <asset:javascript src="jquery-3.1.1.min.js"/>
+    <asset:stylesheet src="application.css"/>
+    <asset:javascript src="application.js"/>
     <g:layoutHead/>
 </head>
 
@@ -26,18 +22,6 @@
         <g:layoutBody/>
     </div>
 </div>
-
-<!-- Mainly scripts -->
-
-<asset:javascript src="bootstrap.min.js"/>
-
-<asset:javascript src="plugins/metisMenu/jquery.metisMenu.js"/>
-<asset:javascript src="plugins/slimscroll/jquery.slimscroll.min.js"/>
-
-
-<!-- Custom and plugin javascript -->
-<asset:javascript src="inspinia.js"/>
-<asset:javascript src="plugins/pace/pace.min.js"/>
 </body>
 
 </html>

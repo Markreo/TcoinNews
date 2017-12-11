@@ -1,0 +1,34 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS file within this directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require bootstrap.min
+*= require css/font-awesome
+*= require animate
+*= require plugins/toastr/toastr.min
+*= require plugins/gritter/jquery.gritter
+*= require plugins/dataTables/dataTables.bootstrap.css
+*= require plugins/dataTables/dataTables.responsive.css
+*= require plugins/dataTables/dataTables.tableTools.min.css
+*= require style
+*= require_self
+*= require custom
+*= require plugins/fancybox/source/jquery.fancybox.css
+*= require popover
+*= require plugins/steps/jquery.steps.css
+*= require ace/ace.fileinput.css
+*= require plugins/iCheck/custom.css
+*= require plugins/blueimp/css/blueimp-gallery.min.css
+*= require plugins/jasny/jasny-bootstrap.min.css
+*= require plugins/colorpicker/bootstrap-colorpicker.min.css
+*= require plugins/datapicker/datepicker3.css
+*= require plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css
+*= require plugins/sweetalert/sweetalert.css
+*= require plugins/select2/select2.min.css
+*= require  plugins/summernote/summernote.css
+*/
