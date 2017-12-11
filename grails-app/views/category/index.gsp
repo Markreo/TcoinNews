@@ -45,6 +45,7 @@
                     <p  class="m-b-lg">
                         <strong>Nestable</strong> is an interactive hierarchical list. You can drag and drop to rearrange the order. It works well on touch-screens.
                     </p>
+                    <tc:message/>
 
                     <div class="dd">
                         <ol class="dd-list">
@@ -61,7 +62,7 @@
 <script>
     $(document).on("click", ".dd-handle", function (event) {
         var id = $(this).data("id");
-       alert("click " + id )
+       location.href = "${createLink(controller: 'category', action: 'edit')}/" + id
     });
 </script>
 </body>

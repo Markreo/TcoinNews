@@ -12,10 +12,35 @@ class CategoryController extends BaseController {
       render(view: 'edit', model: [category: new Category()])
    }
 
+    def edit(long id){
+        def category = Category.get(id)
+        if(category){
+            render(view: 'edit', model: [category: category])
+        } else{
+            response.sendError(404)
+        }
+    }
+
     def test(){
         def mt = Category.get(4)
         def l = this.getListUrl(mt)
         render mt.collect{it.name}
+    }
+
+    def save(long id){
+        def category = id?  Category.get(id) : new Category(owner: loggedUser)
+        if(id){
+            params.remove("id")
+        }
+        category.properties = params
+        category.url = "dcm"
+        flash.messsage = "Đã lưu!"
+        if(category.hasErrors() || !category.save(flush: true)){
+            render(view: 'edit', model: [category: category])
+        } else{
+            flash.message = "Đã lưu!"
+            redirect(action: 'index')
+        }
     }
 
     def getListUrl = { category ->
