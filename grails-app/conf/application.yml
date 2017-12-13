@@ -99,6 +99,7 @@ dataSource:
 
 environments:
     development:
+        folder: E:\folder
         dataSource:
             dbCreate: update
             url: jdbc:mysql://localhost/tcoinnews?useUnicode=yes&characterEncoding=UTF-8
@@ -107,6 +108,7 @@ environments:
             dbCreate: update
             url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     production:
+        folder: null
         dataSource:
             dbCreate: none
             url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE

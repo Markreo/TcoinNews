@@ -22,6 +22,7 @@
         <g:layoutBody/>
     </div>
 </div>
+<asset:javascript src="plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"/>
 </body>
 
 </html>

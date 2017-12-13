@@ -76,6 +76,7 @@
                             <th>Category</th>
                             <th>Enable</th>
                             <th>Owner</th>
+                            <th>Last updated</th>
                             <th>Actions</th>
                         </tr>
                         </thead>

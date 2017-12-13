@@ -105,8 +105,8 @@
 
 
             <li>
-                <a href="login.html">
-                    <i class="fa fa-sign-out"></i> Log out
+                <a href="${createLink(controller: 'logout')}">
+                    <i class="fa fa-sign-out"></i> Đăng xuất
                 </a>
             </li>
         </ul>

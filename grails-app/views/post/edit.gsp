@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <g:form name="category" controller="post" action="save" id="${post.id}" class="form-horizontal">
+                    <g:uploadForm name="category" controller="post" action="save" id="${post.id}" class="form-horizontal">
                         <div class="form-group ${hasErrors(bean: post, field: 'title', 'has-error')}">
                             <label class="col-lg-2 control-label">Tiêu đề:</label>
                             <div class="col-lg-10">
@@ -57,11 +57,27 @@
                                 </g:hasErrors>
                             </div>
                         </div>
+                        <div class="form-group ${hasErrors(bean: post, field: 'url', 'has-error')}">
+                            <label class="col-lg-2 control-label">URL:</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="url" placeholder="Nhập vào url, khoảng trắng sẽ được thay thế bằng '-'" class="form-control" value="${post.url}">
+                                <g:hasErrors bean="${post}" field="title">
+                                    <span class="help-block m-b-none">
+                                        <g:renderErrors bean="${post}" field="url"/>
+                                    </span>
+                                </g:hasErrors>
+                            </div>
+                        </div>
 
-                        <div class="form-group">
+                        <div class="form-group ${hasErrors(bean: post, field: 'intro', 'has-error')}">
                             <label class="col-lg-2 control-label">Intro: </label>
                             <div class="col-lg-10">
                                 <textarea name="intro" type="text" class="form-control" placeholder="Intro">${post.intro}</textarea>
+                                <g:hasErrors bean="${post}" field="intro">
+                                    <span class="help-block m-b-none">
+                                        <g:renderErrors bean="${post}" field="intro"/>
+                                    </span>
+                                </g:hasErrors>
                             </div>
                         </div>
                         <div class="form-group">
@@ -70,6 +86,7 @@
                                 <a href="javascript:void(0)" onclick="$('#file-name').html('');$('#select-file').click()" class="btn btn-default">Chọn file</a>
                                 <input name="image" type="file" accept="image/png" class="hide" id="select-file">
                                 <span id="file-name"></span>
+                                <img id="blah" src="${post.image}" alt="Preview image" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -83,11 +100,23 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-group">
+                            <label class="col-lg-2 control-label">Tags: </label>
+                            <div class="col-lg-10">
+                                <input name="tags" class="tagsinput form-control" type="text" value="${post.tags}" placeholder="Nhập và enter để thêm 'tag'"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group ${hasErrors(bean: post, field: 'content', 'has-error')}">
                             <label class="col-lg-2 control-label">Nội dung: </label>
                             <div class="col-lg-10">
-                                <textarea name="content" type="text" class="summernote form-control" placeholder="Intro">${post.intro}</textarea>
+                                <g:hiddenField name="content" value="${post.content}"/>
+                                <div class="summernote form-control" placeholder="Intro">${post.content}</div>
+                                <g:hasErrors bean="${post}" field="content">
+                                    <span class="help-block m-b-none">
+                                        <g:renderErrors bean="${post}" field="content"/>
+                                    </span>
+                                </g:hasErrors>
                             </div>
                         </div>
                         <div class="form-group">
@@ -96,7 +125,7 @@
                                 <a href="${createLink(controller: 'post')}" class="btn btn-sm btn-outline btn-warning"><i class="fa fa-times"></i> Hủy</a>
                             </div>
                         </div>
-                    </g:form>
+                    </g:uploadForm>
                 </div>
             </div>
         </div>
@@ -107,11 +136,39 @@
         $("#select-file").on("change", function (event) {
             var file = $(this).val();
             $("#file-name").html(file)
+            readURL(this);
         });
 
         $(".summernote").summernote({
-            height: '250'
-        })
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['link', 'picture']],
+                ['misc', ['codeview', 'undo', 'redo', 'help']]
+            ],
+            disableDragAndDrop: true,
+            height: 250,
+            placeholder: 'Nhập nội dung vào đây...'
+        });
+
+        $('.tagsinput').tagsinput({
+            tagClass: 'label label-primary'
+        });
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     });
 </script>
 </body>

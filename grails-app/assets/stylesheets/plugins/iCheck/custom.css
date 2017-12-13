@@ -61,3 +61,11 @@
 .note-editor.note-frame{
     border-color: #e5e6e7 !important;
 }
+
+.bootstrap-tagsinput {
+    width: 100%;
+}
+
+.bootstrap-tagsinput > input{
+    min-width: 190px;
+}
