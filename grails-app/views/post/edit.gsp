@@ -83,9 +83,14 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Ảnh: </label>
                             <div class="col-lg-10">
-                                <a href="javascript:void(0)" onclick="$('#file-name').html('');$('#select-file').click()" class="btn btn-default">Chọn file</a>
-                                <input name="image" type="file" accept="image/png" class="hide" id="select-file">
-                                <span id="file-name"></span>
+                                <g:if test="${post.image}">
+                                    <input name="image" class="form-control" type="text" accept="image/png" value="${post.image}" onchange="$('#blah').attr('src', e.target.result);">
+                                </g:if>
+                                <g:else>
+                                    <a href="javascript:void(0)" onclick="$('#file-name').html('');$('#select-file').click()" class="btn btn-default">Chọn file</a>
+                                    <input name="image" type="file" accept="image/png" class="hide" id="select-file">
+                                    <span id="file-name"></span>
+                                </g:else>
                                 <img id="blah" src="${post.image}" alt="Preview image" />
                             </div>
                         </div>
@@ -111,7 +116,7 @@
                             <label class="col-lg-2 control-label">Nội dung: </label>
                             <div class="col-lg-10">
                                 <g:hiddenField name="content" value="${post.content}"/>
-                                <div class="summernote form-control" placeholder="Intro">${post.content}</div>
+                                <div id="summernote" class="form-control">${raw(post.content)}</div>
                                 <g:hasErrors bean="${post}" field="content">
                                     <span class="help-block m-b-none">
                                         <g:renderErrors bean="${post}" field="content"/>
@@ -138,8 +143,9 @@
             $("#file-name").html(file)
             readURL(this);
         });
+        var $summernote = $("#summernote");
 
-        $(".summernote").summernote({
+        $summernote.summernote({
             toolbar: [
                 ['style', ['bold', 'italic', 'underline']],
                 ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -151,23 +157,56 @@
             ],
             disableDragAndDrop: true,
             height: 250,
-            placeholder: 'Nhập nội dung vào đây...'
+            placeholder: 'Nhập nội dung vào đây...',
+            callbacks: {
+                onImageUpload: function (files) {
+                    console.log("onImageUpload");
+                    for (var i = files.length - 1; i >= 0; i--) {
+                        sendFile(files[i], $summernote);
+                    }
+                }
+            }
         });
 
         $('.tagsinput').tagsinput({
             tagClass: 'label label-primary'
         });
 
-        function readURL(input) {
+        $("button[type='submit']").on('click', function(event) {
+            event.preventDefault();
+            $("input[name='content']").val($summernote.summernote('code'));
+            $("#category").submit()
+        })
 
+        function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-
                 reader.onload = function(e) {
                     $('#blah').attr('src', e.target.result);
                 };
                 reader.readAsDataURL(input.files[0]);
             }
+        }
+
+        function sendFile( file) {
+            var form_data = new FormData();
+            form_data.append('contentImage', file);
+            $.ajax({
+                data: form_data,
+                type: "POST",
+                url: "${createLink(controller: 'media', action: 'ajaxUpload')}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(resp) {
+                    $summernote.summernote('insertImage', resp.url, resp.name);
+                    toastr['success']("Tệp hình ảnh đã được tải lên!")
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    console.log(xhr.readyState + xhr.responseText);
+                    toastr['eror']("Không thể tải ảnh lên!")
+                }
+            });
         }
     });
 </script>

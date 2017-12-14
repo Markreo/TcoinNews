@@ -1,13 +1,12 @@
 package com.tcoinnews
 
-import javafx.geometry.Pos
 import org.apache.commons.lang.StringUtils
-import org.apache.commons.lang.math.RandomUtils
 import org.grails.web.json.JSONArray
 import org.grails.web.json.JSONObject
-import org.hibernate.mapping.IdGenerator
 
 class PostController extends BaseController {
+
+    def mediaService
 
     def index() {
         redirect(action: 'list')
@@ -33,7 +32,7 @@ class PostController extends BaseController {
         println("params ${params}")
         def result = new JSONObject()
         def aaData = new JSONArray()
-        def posts = Post.createCriteria().list([max: params.int("length"), offset: params.int("start")]) {
+        def posts = Post.createCriteria().list([max: params.int("length"), offset: params.int("start"), sort: 'lastUpdated']) {
             if(params.search){
                 or {
                     ilike('name', "%${params.search}%")
@@ -75,6 +74,12 @@ class PostController extends BaseController {
         }
 
         //meida controller -> function saveImage() return a link
+        if(params.image){
+            def imagePath = mediaService.saveImage(params.image, loggedUser)
+            if(imagePath){
+                post.image = imagePath
+            }
+        }
         params.remove("image")
         post.properties = params
 
@@ -86,5 +91,17 @@ class PostController extends BaseController {
             flash.message = "Đã lưu!"
             redirect(action: 'list')
         }
+    }
+
+    def delete(long id){
+        def post = Post.get(id)
+        if(post){
+            if(post.delete(flush: true)){
+                flash.message = "deleted!"
+            }else {
+                flash.error = "error!"
+            }
+        }
+        redirect(action: 'list')
     }
 }

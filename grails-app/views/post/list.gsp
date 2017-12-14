@@ -50,6 +50,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
+                    <tc:message/>
                     <div class="row">
                         <div class="col-sm-3 m-b-xs">
                             <select class="input-sm form-control input-s-sm inline">

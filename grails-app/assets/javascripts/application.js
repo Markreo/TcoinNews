@@ -53,6 +53,7 @@
 //= require map-script.js
 //= require plugins/clipboard/clipboard.min.js
 //= require plugins/summernote/summernote.min.js
+//= require plugins/toastr/toastr.min.js
 
 if (typeof jQuery !== 'undefined') {
     (function($) {
