@@ -48,7 +48,7 @@ class PostController extends BaseController {
             arr.put(post.enable)
             arr.put(post.owner?.name)
             arr.put(post.lastUpdated?.format("dd/MM/yy HH:mm"))
-            arr.put("""<a href=${createLink(controller: 'post', action: 'edit', id: post.id)}>Edit</a>""")
+            arr.put("""<a href=${createLink(controller: 'post', action: 'edit', id: post.id)}>Edit</a> <a href="${createLink(controller: 'post', action: 'delete', id: post.id)}" onClick="return confirm('Bạn đang yêu cầu xóa 1 admin?')">Delete</a>""")
             aaData.put(arr)
         }
 
@@ -96,11 +96,9 @@ class PostController extends BaseController {
     def delete(long id){
         def post = Post.get(id)
         if(post){
-            if(post.delete(flush: true)){
-                flash.message = "deleted!"
-            }else {
-                flash.error = "error!"
-            }
+            post.delete(flush: true)
+            flash.message = "deleted!"
+
         }
         redirect(action: 'list')
     }

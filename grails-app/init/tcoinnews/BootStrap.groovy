@@ -21,7 +21,7 @@ class BootStrap {
         }
 
         if(!User.countByEmail("giap.nguyenvan.562@gmail.com")){
-            User giap = new User(username: "it", password: "123456", name: "Nguyễn Văn Giáp", email: "giap.nguyenvan.562@gmail.com")
+            User giap = new User(username: "it", password: "123456", name: "Nguyễn Văn Giáp", email: "giap.nguyenvan.562@gmail.com", isAdmin: true)
             if(giap.hasErrors() || !giap.save(flush: true)){
                 println("save user GIAP error ${giap.errors}")
             } else{

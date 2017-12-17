@@ -23,6 +23,9 @@ class User implements Serializable {
 
 	String name
 	String email
+	boolean isAdmin = false
+    Date dateCreated
+    Date lastUpdated
 
 	Set<Role> getAuthorities() {
 		(UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
@@ -49,6 +52,7 @@ class User implements Serializable {
 		username blank: false, unique: true
 		name nullable: false
 		email nullable: false, unique: true
+		isAdmin nullale: true
 	}
 
 	static mapping = {

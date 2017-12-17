@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Files</title>
+    <title>User</title>
     <meta name="layout" content="dashboard"/>
 </head>
 
@@ -21,7 +21,7 @@
                 <a href="${createLink(controller:'dashboard')}">Dashboard</a>
             </li>
             <li class="active">
-                <strong>File</strong>
+                <strong>User</strong>
             </li>
         </ol>
     </div>
@@ -92,7 +92,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        Datatable.init("#meida_table", "${createLink(controller: 'media', action: 'data')}", "#search-input")
+        %{--Datatable.init("#meida_table", "${createLink(controller: 'media', action: 'data')}", "#search-input")--}%
     })
 </script>
 </body>

@@ -8,26 +8,26 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Files</title>
+    <title>Admin</title>
     <meta name="layout" content="dashboard"/>
 </head>
 
 <body>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Files - Tập tin</h2>
+        <h2>Admin account - Tài khoản Admin</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="${createLink(controller:'dashboard')}">Dashboard</a>
             </li>
             <li class="active">
-                <strong>File</strong>
+                <strong>Admin</strong>
             </li>
         </ol>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="${createLink(controller: 'media', action: 'upload')}" class="btn btn-primary"><i class="fa fa-upload"></i> Tải lên</a>
+            <a href="${createLink(controller: 'admin', action: 'create')}" class="btn btn-primary"><i class="fa fa-upload"></i> Thêm</a>
         </div>
     </div>
 </div>
@@ -68,15 +68,13 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-bordered" id="meida_table">
+                    <table class="table table-bordered" id="aaaaaaa">
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>Username</th>
                             <th>Name</th>
-                            <th>Preview</th>
-                            <th>Slug</th>
-                            <th>Type</th>
-                            <th>Owner</th>
+                            <th>Email</th>
                             <th>Last updated</th>
                             <th>Actions</th>
                         </tr>
@@ -92,7 +90,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        Datatable.init("#meida_table", "${createLink(controller: 'media', action: 'data')}", "#search-input")
+        Datatable.init("#aaaaaaa", "${createLink(controller: 'admin', action: 'data')}", "#search-input")
     })
 </script>
 </body>

@@ -56,6 +56,7 @@ class MediaController extends BaseController {
             def arr = new JSONArray()
             arr.put(i + 1)
             arr.put("""${media.name} <a href="${createLink(controller:'media', action: (media.type as String).toLowerCase(), id: media.slug, absolute: true)}" target="_blank" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tooltip on right"><i class="fa fa-share-square-o"></i></a>  """)
+            arr.put("<img src=${createLink(controller: 'media', action: (media.type as String).toLowerCase(), id: media.slug)}>")
             arr.put(media.slug)
             arr.put(media.type)
             arr.put(media.owner?.name)
@@ -87,14 +88,11 @@ class MediaController extends BaseController {
         def media = Media.get(id)
         if(media){
             def path = media.path
-            if(media.delete(flush: true)){
-                flash.message = "da xoa"
-                File deleteFile = new File(path)
-                if(deleteFile.exists()){
-                    deleteFile.delete()
-                }
-            } else{
-                flash.error = "co loi khi xoa"
+            media.delete(flush: true)
+            flash.message = "da xoa"
+            File deleteFile = new File(path)
+            if(deleteFile.exists()){
+                deleteFile.delete()
             }
         }
         redirect(action: 'list')

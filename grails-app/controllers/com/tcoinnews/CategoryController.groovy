@@ -54,4 +54,12 @@ class CategoryController extends BaseController {
             return [category]
         }
     }
+
+    def delete(long id){
+        Category category = Category.get(id)
+        if(category){
+            Post.executeUpdate("update Category c set c.category= null where c.category=:category", [category: category])
+            category.delete(flush: true)
+        }
+    }
 }
