@@ -54,6 +54,7 @@
 //= require plugins/clipboard/clipboard.min.js
 //= require plugins/summernote/summernote.min.js
 //= require plugins/toastr/toastr.min.js
+//= require tc.js
 
 if (typeof jQuery !== 'undefined') {
     (function($) {

@@ -23,6 +23,7 @@ class User implements Serializable {
 
 	String name
 	String email
+	String avatar
 	boolean isAdmin = false
     Date dateCreated
     Date lastUpdated
@@ -51,6 +52,7 @@ class User implements Serializable {
 		password blank: false, password: true
 		username blank: false, unique: true
 		name nullable: false
+		avatar nullable: true
 		email nullable: false, unique: true
 		isAdmin nullale: true
 	}

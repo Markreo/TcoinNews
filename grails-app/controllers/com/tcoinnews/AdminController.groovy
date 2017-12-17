@@ -30,7 +30,6 @@ class AdminController extends BaseController{
         def admin = User.findByIdAndIsAdmin(id, true)
         if(admin){
             def posts = Post.findAllByEnableAndOwner(true, admin)
-            println(posts.size())
             render(view: 'show', model: [admin: admin, posts: posts])
         } else{
             response.sendError(404)

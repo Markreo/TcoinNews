@@ -69,3 +69,15 @@
 .bootstrap-tagsinput > input{
     min-width: 190px;
 }
+
+.comment-like {
+    color: #888888
+}
+
+.comment-like:active, .comment-like:hover {
+    color: #23527c
+}
+
+.comment-like:active i.fa.fa-thumbs-o-up:before, .comment-like:hover i.fa.fa-thumbs-o-up:before{
+    content: "\f164";
+}

@@ -32,45 +32,10 @@
         </div>
     </div>
     <div class="social-footer">
-        <div class="social-comment">
-            <a href="" class="pull-left">
-                <img alt="image" src="/assets/a1.jpg">
-            </a>
-            <div class="media-body">
-                <a href="#">
-                    Andrew Williams
-                </a>
-                Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
-                <br/>
-                <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
-                <small class="text-muted">12.06.2014</small>
-            </div>
-        </div>
-
-        <div class="social-comment">
-            <a href="" class="pull-left">
-                <img alt="image" src="/assets/a2.jpg">
-            </a>
-            <div class="media-body">
-                <a href="#">
-                    Andrew Williams
-                </a>
-                Making this the first true generator on the Internet. It uses a dictionary of.
-                <br/>
-                <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
-                <small class="text-muted">10.07.2014</small>
-            </div>
-        </div>
-
-        <div class="social-comment">
-            <a href="" class="pull-left">
-                <img alt="image" src="/assets/a3.jpg">
-            </a>
-            <div class="media-body">
-                <textarea class="form-control" placeholder="Write comment..."></textarea>
-            </div>
-        </div>
-
+        <g:each in="${com.tcoinnews.Comment.findAllByEntryAndEntryId(com.tcoinnews.Comment.Entry.POST_ADMIN, post.id, [max: 10, sort: 'lastUpdated', order: 'desc'])}" var="comment">
+            <g:render template="/comment/post_admin" model="[comment: comment]"/>
+        </g:each>
+        <g:render template="/comment/add_post_admin" model="[post: post]"/>
     </div>
 
 </div>
