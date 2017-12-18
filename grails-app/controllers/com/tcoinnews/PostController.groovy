@@ -1,5 +1,6 @@
 package com.tcoinnews
 
+import grails.plugin.springsecurity.annotation.Secured
 import org.apache.commons.lang.StringUtils
 import org.grails.web.json.JSONArray
 import org.grails.web.json.JSONObject
@@ -25,6 +26,16 @@ class PostController extends BaseController {
             render(view: 'edit', model: [post: post])
         } else{
             response.sendError(404)
+        }
+    }
+
+    @Secured('permitAll')
+    def show(String id){//id = url
+        Post post = Post.findByUrl(id)
+        if(post){
+            render(view: 'show', model: [post: post])
+        } else{
+            redirect(controller: 'home')
         }
     }
 
