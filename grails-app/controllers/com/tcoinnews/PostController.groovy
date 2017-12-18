@@ -85,7 +85,7 @@ class PostController extends BaseController {
         }
 
         //meida controller -> function saveImage() return a link
-        if(params.image){
+        if(params.image && !post.id){
             def imagePath = mediaService.saveImage(params.image, loggedUser)
             if(imagePath){
                 post.image = imagePath
