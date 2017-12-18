@@ -20,7 +20,9 @@
                     IN+
                 </div>
             </li>
-
+            <li>
+                <a href="/"><i class="fa fa-home"></i> <span class="nav-label">Tcoin Newss</span></a>
+            </li>
             <li>
                 <a href="${createLink(controller: 'dashboard')}"><i class="fa fa-home"></i> <span class="nav-label">Dashboard</span></a>
             </li>
