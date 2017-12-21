@@ -11,4 +11,6 @@ class HomeController extends BaseController {
         }
         render(view: 'index', model: [posts: posts])
     }
+
+
 }

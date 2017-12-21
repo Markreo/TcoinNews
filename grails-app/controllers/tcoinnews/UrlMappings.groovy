@@ -14,6 +14,11 @@ class UrlMappings {
             action = 'show'
         }
 
+        "/media/photo?/$id?(.$format)?"{
+            controller = 'media'
+            action = 'image'
+        }
+
         "/"(controller: "home", action:"index")
         "500"(view:'/error')
         "404"(view:'/notFound')

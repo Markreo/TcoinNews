@@ -91,7 +91,7 @@
                                     <input name="image" type="file" accept="image/png" class="hide" id="select-file">
                                     <span id="file-name"></span>
                                 </g:else>
-                                <img id="blah" src="${post.image}" alt="Preview image" />
+                                <img id="blah" src="${post.image}" alt="Preview image" width="300px" />
                             </div>
                         </div>
                         <div class="form-group">

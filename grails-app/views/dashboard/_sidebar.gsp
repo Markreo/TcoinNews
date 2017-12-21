@@ -6,7 +6,7 @@
                     <tc:avatar className="img-circle"/>
                 </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
+                        <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><tc:username/></strong>
                         </span> <span class="text-muted text-xs block">Admin <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a href="profile.html">Profile</a></li>
@@ -17,7 +17,7 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    #BTC
                 </div>
             </li>
             <li>
@@ -43,6 +43,10 @@
             </li>
             <li>
                 <a href="#"><i class="fa fa-code"></i> <span class="nav-label">About</span></a>
+            </li>
+
+            <li>
+                <a href="${createLink(controller: 'dashboard', action: 'version')}"><i class="fa fa-key"></i> <span class="nav-label">Version</span></a>
             </li>
         </ul>
 

@@ -56,12 +56,12 @@ class MediaController extends BaseController {
             def arr = new JSONArray()
             arr.put(i + 1)
             arr.put("""${media.name} <a href="${createLink(controller:'media', action: (media.type as String).toLowerCase(), id: media.slug, absolute: true)}" target="_blank" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tooltip on right"><i class="fa fa-share-square-o"></i></a>  """)
-            arr.put("<img src=${createLink(controller: 'media', action: (media.type as String).toLowerCase(), id: media.slug)}>")
+            arr.put("<img src=${createLink(controller: 'media', action: (media.type as String).toLowerCase(), id: media.slug)} width='100px'>")
             arr.put(media.slug)
             arr.put(media.type)
             arr.put(media.owner?.name)
             arr.put(media.lastUpdated?.format("dd/MM/yy HH:mm"))
-            arr.put("""<a href=${createLink(controller: 'post', action: 'edit', id: media.id)}>Delete</a>""")
+            arr.put("""<a href=${createLink(controller: 'media', action: 'delete', id: media.id)} onClick="return confirm('Bạn đang thực hiện hành động xóa File?')">Delete</a>""")
             aaData.put(arr)
         }
 
@@ -95,6 +95,6 @@ class MediaController extends BaseController {
                 deleteFile.delete()
             }
         }
-        redirect(action: 'list')
+        redirect(controller: 'media',action: 'list')
     }
 }

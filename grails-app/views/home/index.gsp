@@ -27,7 +27,7 @@
                     </g:each>
                 </div>
                 <div class="pagination">
-                    <button type="button" class="btn btn-secondary btn-lg btn-block">Load More</button>
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" id="loadmore" data-start="${posts?.size()}">Load More</button>
                 </div>
             </div>
             <!--Sidebar-->
@@ -36,5 +36,18 @@
     </div>
     <!--.container-->
 </div>
+<script>
+    $(document).ready(function () {
+        $(document).on("click", "#loadmore",function (event) {
+            event.preventDefault();
+            var self = $(this);
+            var start = self.data("start");
+            $.post("${createLink(controller: 'post', action: 'more')}", {start: start}, function (html) {
+                self.after(html);
+                self.attr("data-start", parseInt(start) + 15)
+            })
+        })
+    });
+</script>
 </body>
 </html>

@@ -22,7 +22,8 @@
                 <div class="row blog-post">
                     <div class="col-md-1 date-md">
                         <!-- Date desktop -->
-                        <div class="date-wrapper"> <span class="date-m bg-primary">Jan</span> <span class="date-d">07</span>
+                        <div class="date-wrapper">
+                            <span class="date-m bg-primary">Jan</span> <span class="date-d">07</span>
                         </div>
                         <!-- Meta details desktop -->
                         <p class="text-muted"> <i class="fa fa-user"></i> <a href="#">Erin</a>
@@ -30,7 +31,9 @@
                     </div>
                     <div class="col-md-11">
                         <div class="media-body">
-                            <div class="sections"><a href="#" class="text-primary">${post.category?.url}</a>
+                            <div class="sections">
+                                <a href="#" class="text-primary">${post.category?.url}</a>
+                            </div>
                             <h3 class="title media-heading">
                                 ${post.title}
                             </h3>
@@ -43,6 +46,7 @@
 
                             <!--Main content of post-->
                             <div class="blog-content">
+                                <p class="lead">${post.intro}</p>
                                 ${raw(post.content)}
                             </div>
 
@@ -51,11 +55,12 @@
                                 <h4>
                                     tags
                                 </h4>
-                            <g:each in="${post.tags?.split(",")}" var="tag">
-                                <a href="#" class="badge badge-secondary">${tag}</a>
-                            </g:each>
+                                <g:each in="${post.tags?.split(",")}" var="tag">
+                                    <a href="#" class="badge badge-secondary">${tag}</a>
+                                </g:each>
+                            </div>
 
-                            <div class="block bg-faded p-3 post-block">
+                            %{--<div class="block bg-faded p-3 post-block">
                                 <!-- About The Author -->
                                 <div class="post-author">
                                     <h4>
@@ -75,13 +80,14 @@
                                     <a href="#" class="social-link branding-linkedin"><i class="fa fa-linkedin-square"></i></a>
                                     <a href="#" class="social-link branding-google-plus"><i class="fa fa-google-plus-square"></i></a>
                                 </div>
-                            </div>
+                            </div>--}%
                         </div>
                     </div>
                 </div>
 
+
                 <!-- Related Content -->
-                <div class="post-related-content">
+                %{--<div class="post-related-content">
                     <h4>
                         Related Content
                     </h4>
@@ -131,13 +137,13 @@
                             </h5>
                         </div>
                     </div>
-                </div>
+                </div>--}%
 
                 <!-- Post To Post Pager -->
-                <div class="post-to-post-pager"> <a href="#" class="btn btn-lg btn-primary previous">&larr; Previous Post</a> <a href="#" class="btn btn-lg btn-primary next">Next Post &rarr;</a> </div>
+                %{--<div class="post-to-post-pager"> <a href="#" class="btn btn-lg btn-primary previous">&larr; Previous Post</a> <a href="#" class="btn btn-lg btn-primary next">Next Post &rarr;</a> </div>--}%
 
                 <!--Comments-->
-                <div class="comments" id="comments">
+                %{--<div class="comments" id="comments">
                     <h3>
                         Comments (10)
                     </h3>
@@ -335,12 +341,17 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                </div>
+                </div>--}%
             </div>
-            <!--Sidebar-->
-            <g:render template="/template/rightbar"/>
-        </div>
+
+        <!--Sidebar-->
+        <g:render template="/template/rightbar"/>
     </div>
 </div>
+
+
+
+
+
 </body>
 </html>

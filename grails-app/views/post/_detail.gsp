@@ -32,14 +32,14 @@
 
             <div class="${post.image ? 'col-md-8 pull-md-4' : 'col-md-12'}">
                 <p>${post.intro}</p>
-                <ul class="list-inline links">
+                %{--<ul class="list-inline links">
                     <li class="list-inline-item">
                         <a href="${createLink(controller: 'post', action: 'show', id: post.url)}" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                     </li>
-                    %{--<li class="list-inline-item">
+                    <li class="list-inline-item">
                         <a href="blog-post.htm#comments" class="btn btn-secondary btn-sm"><i class="fa fa-comment"></i> 87 Comments</a>
-                    </li>--}%
-                </ul>
+                    </li>
+                </ul>--}%
             </div>
         </div>
     </div>

@@ -16,4 +16,10 @@ class HelperTagLib {
         User user = springSecurityService.currentUser ?: null
         out << """<img src="${user?.avatar ?: '/assets/defaultuser.png'}" alt="${user.name}" ${className ? "class='${className}'" : ""}>"""
     }
+
+    def username ={ attrs, body ->
+        String className = attrs.className
+        User user = springSecurityService.currentUser ?: null
+        out << user?.name
+    }
 }

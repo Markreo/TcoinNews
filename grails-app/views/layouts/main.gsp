@@ -9,6 +9,7 @@
     <!-- @todo: fill with your company info or remove -->
     <meta name="description" content="">
     <meta name="author" content="Themelize.me">
+    <link rel="shortcut icon" href="/assets/favicon.ico">
 
     <!-- Bootstrap v4.0.0-beta CSS via CDN -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"/>
